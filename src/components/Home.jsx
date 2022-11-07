@@ -37,6 +37,7 @@ export default function Home() {
             onChange={(e) => setSearch(e.target.value)} />
             <select 
             onChange={filterByPrice}>
+                <option value="all">All books</option>
                 <option value="10">Book price 10 $</option>
                 <option value="20">Book price 20 $</option>
                 <option value="30">Book price 30 $</option>
@@ -53,7 +54,7 @@ export default function Home() {
                         return book.language.toLowerCase().includes(search)
                     }else if (price)
                     {
-                        return book.price == price
+                        return price != "all" ? book.price == price : book
                     }else{
                         return book
                     }
