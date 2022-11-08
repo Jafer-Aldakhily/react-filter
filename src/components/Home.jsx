@@ -4,19 +4,19 @@ import data from '../data.json'
 export default function Home() {
     const [search,setSearch] = useState("")
     const [price,setPrice] = useState(0)
-    const [books,setBooks] = useState(data)
+    const [books,setBooks] = useState(data.eBooks)
 
-    // useEffect(() => {
-    //     if(search)
-    //     {
-    //         const result = books?.eBooks?.filter(book => book.language.toLowerCase().includes(search)).map(book => book)
-    //         // console.log(result);
-    //         setBooks(result)
-    //         console.log(result);
-    //     }else{
-    //         setBooks(books)
-    //     }
-    // },[search])
+    useEffect(() => {
+        if(search)
+        {
+            const result = books?.filter(book => book.language.toLowerCase().includes(search))
+            console.log(result);
+            setBooks(result)
+            // console.log();
+        }else{
+            setBooks(data.eBooks)
+        }
+    },[search])
 
     const filterByPrice = (e) => {
         setPrice(e.target.value) 
@@ -48,7 +48,7 @@ export default function Home() {
         <div style={{
             display: "flex", marginTop: "20px", flexWrap: "wrap"
         }}>
-                {books?.eBooks?.filter(book => {
+                {/* {books?.eBooks?.filter(book => {
                     if(search)
                     {
                         return book.language.toLowerCase().includes(search)
@@ -59,6 +59,20 @@ export default function Home() {
                         return book
                     }
                     }).map((book,index) => {
+                    return (
+                            <div key={index} className="card" style={{ width: "300px", margin: "20px", marginLeft: "20px" }}>
+    
+                                <div className="card-body">
+                                    <h5 className="card-title">language :{book.language} </h5>
+                                    <h5 className="card-title">edition :{book.edition} </h5>
+    
+                                    <h5 className="card-title">price :{book.price} </h5>
+    
+                                </div>
+                            </div>
+                    );
+                })} */}
+                {books?.map((book,index) => {
                     return (
                             <div key={index} className="card" style={{ width: "300px", margin: "20px", marginLeft: "20px" }}>
     
